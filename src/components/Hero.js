@@ -4,7 +4,7 @@ function Hero() {
   return (
     <section id="home" className="hero" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", height: "50vh" }}>
       <h1>Портфолио программиста</h1>
-      <p>React • JavaScript • Frontend Development</p>
+      <p>С++/С# • React • Backend Developmer</p>
 <button
   className="glow-button"
   onClick={() => {
