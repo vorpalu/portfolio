@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 
 function App() {
 
-  // === Анимация появления секций ===
+  // === Анимация пnоявления секций ===
   useEffect(() => {
     const sections = document.querySelectorAll(".fade-section");
 
