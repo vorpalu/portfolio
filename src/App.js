@@ -1,24 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Gallery from "./components/Gallery";
+import Projects from "./components/Projects";
+import ContactForm from "./components/ContactForm";
+import Footer from "./components/Footer";
 
 function App() {
+
+  // === Анимация появления секций ===
+  useEffect(() => {
+    const sections = document.querySelectorAll(".fade-section");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+
+      {/* hero-wrapper + ЭФФЕКТЫ ТОЛЬКО ЗДЕСЬ */}
+      <div className="hero-wrapper">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+
+        <div id="aurora"></div>
+
+        <div className="comet" style={{ "--delay": "0s" }}></div>
+        <div className="comet" style={{ "--delay": "3s" }}></div>
+        <div className="comet" style={{ "--delay": "7s" }}></div>
+        <div className="comet" style={{ "--delay": "12s" }}></div>
+        <div className="comet" style={{ "--delay": "18s" }}></div>
+
+        <Hero />
+      </div>
+
+      <div className="section-separator"></div>
+
+      <About className="fade-section" />
+      <div className="section-separator"></div>
+
+      <Gallery className="fade-section" />
+      <div className="section-separator"></div>
+
+      <Projects className="fade-section" />
+      <div className="section-separator"></div>
+
+      <ContactForm className="fade-section" />
+
+      <Footer />
+    </>
   );
 }
 

@@ -1,13 +1,508 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  scroll-behavior: smooth;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  color: #e6edf3;
+
+  /* Тёмный зимний-океанический градиент */
+  background: linear-gradient(
+    135deg,
+    #0a0f1c,   /* глубокая ночь */
+    #1a2235,   /* холодное зимнее небо */
+    #232b3f,   /* влажный воздух, туман */
+    #0d1b24,   /* тёмный океан */
+    #111418,   /* угольный графит */
+    #0b0e13    /* почти абсолютная тьма */
+  );
+
+  background-size: 400% 400%;
+  animation: deepNight 18s ease infinite;
+}
+
+/* Мягкая медленная анимация переливов */
+@keyframes deepNight {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Анимация мягкого перелива */
+@keyframes ugandaGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+section {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 20px;
+  font-weight: 600;
+}
+
+/* HEADER */
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  backdrop-filter: blur(8px);
+  background: rgba(22, 27, 34, 0.7);
+  padding: 15px 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+header nav a {
+  color: #e6edf3;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.25s;
+}
+
+header nav a:hover {
+  color: #58a6ff;
+  text-shadow: 0 0 8px #58a6ff;
+}
+
+/* HERO */
+
+.hero {
+  text-align: center;
+  padding-top: 60px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 20px;
+  opacity: 0.85;
+}
+
+.button-main {
+  background: #238636;
+  color: #fff;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 8px;
+  font-size: 18px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.button-main:hover {
+  background: #2ea043;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(35, 134, 54, 0.4);
+}
+
+/* GALLERY */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  background: #161b22;
+  height: 180px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-size: 18px;
+  transition: 0.25s;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* PROJECTS */
+
+.projects-list {
+  display: grid;
+  gap: 20px;
+}
+
+/* === GLOW PROJECT CARDS === */
+
+.project-card {
+  position: relative;
+  background: #161b22;
+  padding: 25px;
+  border-radius: 16px;
+  transition: 0.3s ease;
+  overflow: hidden;
+}
+
+/* мягкое неоновое свечение по контуру */
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    #4effff,
+    #a14bff,
+    #ff4be1,
+    #4bff88
+  );
+  background-size: 400% 400%;
+  animation: glowBorder 12s ease infinite;
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* сияние усиливается при наведении */
+.project-card:hover::before {
+  opacity: 1;
+  filter: drop-shadow(0 0 12px #7bffea);
+}
+
+/* неоновые переливы */
+@keyframes glowBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* FORM */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+}
+
+input,
+textarea {
+  background: #21262d;
+  border: 1px solid #30363d;
+  color: #e6edf3;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  background: #58a6ff;
+  color: #000;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+button:hover {
+  background: #79c0ff;
+  transform: translateY(-3px);
+}
+
+/* FOOTER */
+
+footer {
+  background: #161b22;
+  padding: 40px;
+  text-align: center;
+  margin-top: 60px;
+  font-size: 15px;
+}
+
+footer a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-shadow: 0 0 6px #58a6ff;
+}
+
+button {
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+  -webkit-text-stroke: 0.4px rgba(0, 0, 0, 0.4);
+}
+
+/* ===============================
+      НОВЫЙ ЗВЁЗДНЫЙ ФОН (надёжный)
+   =============================== */
+
+/* Малые звезды */
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow:
+    50vw 10vh white,
+    20vw 40vh white,
+    70vw 80vh white,
+    10vw 90vh white,
+    80vw 30vh white,
+    30vw 60vh white,
+    60vw 20vh white,
+    40vw 50vh white,
+    90vw 70vh white,
+    25vw 85vh white;
+  animation: animStar 90s linear infinite;
+  z-index: -1;
+}
+
+/* Средние звезды */
+#stars2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow:
+    15vw 15vh white,
+    55vw 45vh white,
+    85vw 75vh white,
+    35vw 25vh white,
+    65vw 55vh white,
+    95vw 35vh white;
+  animation: animStar 140s linear infinite;
+  z-index: -1;
+}
+
+/* Крупные звезды */
+#stars3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow:
+    30vw 10vh white,
+    70vw 30vh white,
+    20vw 70vh white,
+    50vw 90vh white;
+  animation: animStar 200s linear infinite;
+  z-index: -1;
+}
+
+@keyframes animStar {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-2000px); }
+}
+
+/* ====== СЕВЕРНОЕ СИЯНИЕ ====== */
+#aurora {
+  position: absolute;
+  top: -20vh;
+  left: 0;
+  width: 100%;
+  height: 60vh;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    rgba(0, 255, 180, 0.25),
+    rgba(0, 140, 255, 0.2),
+    rgba(170, 0, 255, 0.2),
+    rgba(0, 200, 255, 0.25)
+  );
+  filter: blur(90px);
+  animation: auroraMove 20s ease-in-out infinite alternate;
+}
+
+@keyframes auroraMove {
+  0%   { transform: translateX(-20%) translateY(0); }
+  50%  { transform: translateX(10%)  translateY(5%); }
+  100% { transform: translateX(-10%) translateY(3%); }
+}
+
+/* ====== КОМЕТЫ ====== */
+.comet {
+  position: absolute;
+  top: -10vh;
+  left: -10vw;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 4px rgba(255,255,255,0.8);
+  z-index: -1;
+  opacity: 0;
+  pointer-events: none;
+  animation: cometFly 20s linear infinite;
+  animation-delay: var(--delay);
+}
+
+@keyframes cometFly {
+  0%   { transform: translate(0,0) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  100% {
+    transform: translate(130vw, 60vh) scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* ====== ЗАГОЛОВКИ ПО ЦЕНТРУ ====== */
+h1, h2 {
+  text-align: center !important;
+}
+
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 60vh; /* Достаточно для сияния */
+  padding-bottom: 80px; /* Чтобы кнопка не прилипала к низу */
+  overflow: hidden;
+}
+
+/* Линия-мягкая тень между секциями */
+.section-separator {
+  width: 100%;
+  height: 80px;
+  margin: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.12) 0%,
+    rgba(255,255,255,0.03) 40%,
+    rgba(0,0,0,0) 70%
+  );
+  filter: blur(10px);
+  opacity: 0.7;
+}
+
+/* === Кнопка с подсветкой, реагирующей на мышь === */
+.glow-button {
+  position: relative;
+  background: hsl(108, 61%, 45%);
+  border: none;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.15s ease;
+  z-index: 1;
+}
+
+.glow-button:hover {
+  transform: translateY(-3px);
+}
+
+/* сам эффект подсветки */
+.glow-button::before {
+  content: "";
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: 140px;
+  height: 140px;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.35);
+  filter: blur(40px);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: 0.1s;
+}
+
+.glow-button:hover {
+  transform: translateY(-3px);
+  background: #3FFF00;
+  color: #ffffff;
+  box-shadow: 0 0 20px #3FFF00, 0 0 40px #3FFF00aa;
+}
+
+/* ==== АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ ==== */
+
+.fade-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.9s ease-out;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===========================
+     iOS FROSTED GLASS EFFECT
+   =========================== */
+
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 40px;
+  margin: 40px auto;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.35);
+}
+
+/* PHOTO GLOW BORDER */
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 0 15px rgba(0, 255, 255, 0.4),
+    0 0 35px rgba(140, 0, 255, 0.3),
+    0 0 60px rgba(255, 0, 200, 0.25);
+  transition: 0.4s ease;
+}
+
+/* усиление эффекта на hover */
+.gallery-item img:hover {
+  box-shadow:
+    0 0 25px rgba(0, 255, 255, 0.8),
+    0 0 50px rgba(140, 0, 255, 0.6),
+    0 0 80px rgba(255, 0, 200, 0.5);
+  transform: scale(1.03);
 }
