@@ -7,7 +7,7 @@ import "./Gallery.css";
 
 function Gallery() {
   const images = [img1, img2, img3];
-  // индивидуальные смещения кадрирования (можно менять на свой вкус, например "center 5%" или "center 15%")
+  // индивидуальные смещения кадрирования
   const imagePositions = ["center 6%", "center 30%", "center 30%"];
   const [modalImg, setModalImg] = useState(null);
 

@@ -3,12 +3,11 @@ import Lightbox from "./Lightbox";
 import img1 from "../assets/gallery/1.jpg";
 import img2 from "../assets/gallery/2.jpg";
 import img3 from "../assets/gallery/3.jpg";
-// добавь свои фото
 
 export default function Gallery() {
   const [selected, setSelected] = useState(null);
 
-  const images = [img1, img2, img3]; // твои фотки
+  const images = [img1, img2, img3]; 
 
   return (
     <section id="gallery" className="fade-section">
