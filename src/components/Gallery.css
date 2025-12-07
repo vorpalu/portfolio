@@ -12,12 +12,14 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
 }
 
 .gallery-photo {
-  width: 320px;
-  height: 240px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center center;
   border-radius: 12px;
@@ -82,4 +84,11 @@
 .modal-close:hover {
   background: rgba(0, 0, 0, 0.75);
   transform: scale(1.08);
+}
+
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
 }
