@@ -3,7 +3,11 @@ import React from "react";
 function Footer() {
   return (
     <footer>
-      <p>© 2025 • Портфолио программиста</p>
+      <p>
+        © 2025 • Портфолио программиста
+        <br />
+        Сделано с ❤️ в России (и на Реакте)
+      </p>
 
       <div style={{ marginBottom: "10px" }}>
         <a href="https://github.com/vorpalu" target="_blank" rel="noreferrer">
