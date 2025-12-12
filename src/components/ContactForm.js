@@ -3,7 +3,6 @@ import React, { useState } from "react";
 function ContactForm() {
   const [emailError, setEmailError] = useState("");
 
-  // === Cloudflare Worker URL ===
   const WORKER_URL = "https://discord-bot.8tyrypyxvn.workers.dev/";
 
   const handleSubmit = async (e) => {
